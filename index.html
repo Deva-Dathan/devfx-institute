@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>DevFX Institute</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:wght@600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --sky:#0EA5E9;
+  --sky-dark:#0284C7;
+  --sky-deep:#0369A1;
+  --sky-soft:#E0F2FE;
+  --sky-xsoft:#F0F9FF;
+  --white:#FFFFFF;
+  --bg:#F8FCFF;
+  --bg2:#EFF8FF;
+  --border:#BAE6FD;
+  --border2:#E0F2FE;
+  --text:#0C1A2E;
+  --text2:#334E68;
+  --muted:#64748B;
+  --green:#059669;
+  --green-bg:#ECFDF5;
+  --amber:#D97706;
+  --amber-bg:#FFFBEB;
+  --red:#DC2626;
+  --red-bg:#FEF2F2;
+}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+
+nav{background:var(--white);border-bottom:1px solid var(--border2);padding:0.9rem 3rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{font-family:'Lora',serif;font-size:1.35rem;font-weight:700;color:var(--text);letter-spacing:-0.01em}
+.logo span{color:var(--sky)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s}
+.nav-links a:hover{color:var(--sky-dark)}
+.nav-cta{background:var(--sky);color:var(--white);padding:0.5rem 1.4rem;border-radius:8px;font-weight:600;font-size:0.88rem;cursor:pointer;border:none;transition:all 0.2s}
+.nav-cta:hover{background:var(--sky-dark)}
+
+.hero{background:var(--white);padding:5.5rem 3rem 4.5rem;border-bottom:1px solid var(--border2);position:relative;overflow:hidden}
+.hero-blob{position:absolute;top:-80px;right:-100px;width:500px;height:500px;background:var(--sky-xsoft);border-radius:50%;opacity:0.6}
+.hero-blob2{position:absolute;bottom:-120px;left:-80px;width:300px;height:300px;background:var(--sky-soft);border-radius:50%;opacity:0.4}
+.hero-inner{position:relative;z-index:1;max-width:620px}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--sky-soft);border:1px solid var(--border);color:var(--sky-deep);font-size:0.73rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;padding:0.28rem 0.85rem;border-radius:100px;margin-bottom:1.4rem}
+.live-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+h1{font-family:'Lora',serif;font-size:clamp(2.1rem,4.5vw,3.1rem);font-weight:700;color:var(--text);line-height:1.18;margin-bottom:1.1rem}
+h1 em{color:var(--sky);font-style:normal}
+.hero-sub{color:var(--muted);font-size:0.98rem;max-width:490px;margin-bottom:2rem;line-height:1.75}
+.hero-btns{display:flex;gap:0.9rem;flex-wrap:wrap}
+.btn-primary{background:var(--sky);color:var(--white);padding:0.78rem 1.9rem;border-radius:8px;font-weight:600;font-size:0.93rem;cursor:pointer;border:none;transition:all 0.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-primary:hover{background:var(--sky-dark);transform:translateY(-1px)}
+.btn-ghost{background:var(--white);color:var(--text2);padding:0.78rem 1.9rem;border-radius:8px;font-weight:500;font-size:0.93rem;cursor:pointer;border:1.5px solid var(--border);transition:all 0.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-ghost:hover{border-color:var(--sky);color:var(--sky-dark)}
+.hero-trust{display:flex;align-items:center;gap:1rem;margin-top:2rem;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:0.8rem;color:var(--muted)}
+.trust-check{width:16px;height:16px;background:var(--green-bg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--green);font-weight:700}
+
+.ticker{background:var(--sky-xsoft);padding:0.65rem 0;overflow:hidden;border-top:1px solid var(--border2);border-bottom:1px solid var(--border2)}
+.ticker-inner{display:flex;gap:3rem;animation:scroll 22s linear infinite;white-space:nowrap}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.tick{display:flex;align-items:center;gap:0.5rem;font-size:0.79rem}
+.tick-pair{color:var(--muted);font-weight:600}
+.tick-val{color:var(--text);font-weight:700}
+.tick-up{color:var(--green);font-weight:600}
+.tick-dn{color:var(--red);font-weight:600}
+
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));background:var(--white);border-bottom:1px solid var(--border2)}
+.stat{padding:1.6rem;text-align:center;border-right:1px solid var(--border2)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:'Lora',serif;font-size:1.9rem;font-weight:700;color:var(--sky-dark)}
+.stat-l{font-size:0.77rem;color:var(--muted);margin-top:0.2rem;font-weight:500}
+
+section{padding:4.5rem 3rem}
+.sec-tag{font-size:0.71rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--sky);font-weight:700;margin-bottom:0.5rem}
+.sec-title{font-family:'Lora',serif;font-size:clamp(1.6rem,2.8vw,2.1rem);font-weight:700;color:var(--text);margin-bottom:0.8rem}
+.sec-sub{color:var(--muted);font-size:0.93rem;max-width:500px;line-height:1.7}
+
+.courses-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:2.5rem}
+.course-card{background:var(--white);border:1.5px solid var(--border2);border-radius:14px;padding:1.5rem;cursor:pointer;transition:all 0.22s}
+.course-card:hover{border-color:var(--sky);transform:translateY(-3px);box-shadow:0 8px 24px rgba(14,165,233,0.1)}
+.clevel{font-size:0.69rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;padding:0.22rem 0.7rem;border-radius:100px;display:inline-block;margin-bottom:1rem}
+.lbeg{background:var(--green-bg);color:var(--green)}
+.lint{background:var(--sky-soft);color:var(--sky-deep)}
+.ladv{background:var(--amber-bg);color:var(--amber)}
+.ctitle{font-family:'Lora',serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:0.4rem}
+.cdesc{font-size:0.83rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.65}
+.cmeta{display:flex;gap:1rem;font-size:0.75rem;color:var(--muted);font-weight:500}
+
+.alt-bg{background:var(--bg2);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2)}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:1rem;margin-top:2.5rem}
+.feat{background:var(--white);border:1.5px solid var(--border2);border-radius:14px;padding:1.4rem;transition:border-color 0.2s}
+.feat:hover{border-color:var(--sky)}
+.ficon{width:40px;height:40px;background:var(--sky-soft);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:1rem}
+.ftitle{font-weight:700;font-size:0.93rem;color:var(--text);margin-bottom:0.35rem}
+.fdesc{font-size:0.81rem;color:var(--muted);line-height:1.6}
+
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1rem;margin-top:2.5rem;max-width:800px}
+.pcard{background:var(--white);border:1.5px solid var(--border2);border-radius:14px;padding:1.8rem;transition:all 0.2s}
+.pcard.featured{border:2px solid var(--sky);background:var(--sky-xsoft)}
+.pbadge{font-size:0.69rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;background:var(--sky-soft);color:var(--sky-deep);padding:0.22rem 0.7rem;border-radius:100px;margin-bottom:0.8rem;display:inline-block}
+.pname{font-family:'Lora',serif;font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:0.4rem}
+.pamount{font-size:2rem;font-weight:800;color:var(--sky-dark);margin-bottom:0.2rem}
+.pamount span{font-size:0.88rem;font-weight:400;color:var(--muted)}
+.pdesc{font-size:0.82rem;color:var(--muted);margin-bottom:1.3rem;line-height:1.6}
+.plist{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.4rem}
+.plist li{font-size:0.84rem;display:flex;gap:8px;color:var(--text2);align-items:flex-start}
+.chk{color:var(--green);font-weight:700;margin-top:1px}
+
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:1rem;margin-top:2.5rem}
+.testi{background:var(--white);border:1.5px solid var(--border2);border-radius:14px;padding:1.4rem}
+.tstars{color:#F59E0B;font-size:0.83rem;margin-bottom:0.7rem}
+.ttext{font-size:0.87rem;color:var(--text2);font-style:italic;line-height:1.7;margin-bottom:1.1rem}
+.tauthor{display:flex;align-items:center;gap:10px}
+.tavatar{width:34px;height:34px;border-radius:50%;background:var(--sky-soft);display:flex;align-items:center;justify-content:center;font-size:0.73rem;font-weight:700;color:var(--sky-deep)}
+.tname{font-size:0.85rem;font-weight:700;color:var(--text)}
+.trole{font-size:0.74rem;color:var(--muted)}
+
+.cta-sec{background:linear-gradient(135deg,var(--sky-xsoft) 0%,var(--sky-soft) 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:5rem 3rem;text-align:center}
+.cta-sec h2{font-family:'Lora',serif;font-size:clamp(1.7rem,3vw,2.3rem);font-weight:700;color:var(--text);margin-bottom:0.9rem}
+.cta-sec p{color:var(--muted);max-width:450px;margin:0 auto 2rem;font-size:0.93rem;line-height:1.7}
+
+footer{background:var(--white);border-top:1px solid var(--border2);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.flinks{display:flex;gap:1.5rem}
+.flinks a{color:var(--muted);font-size:0.82rem;text-decoration:none;transition:color 0.2s}
+.flinks a:hover{color:var(--sky-dark)}
+.fcopy{color:var(--muted);font-size:0.78rem}
+
+#cw{position:fixed;bottom:2rem;right:2rem;z-index:1000;display:flex;flex-direction:column;align-items:flex-end;gap:0.8rem}
+#cbox{width:315px;background:var(--white);border:1.5px solid var(--border);border-radius:18px;overflow:hidden;display:none;flex-direction:column;box-shadow:0 12px 40px rgba(14,165,233,0.12)}
+#cbox.open{display:flex}
+.ch{background:var(--sky);padding:0.9rem 1.1rem;display:flex;align-items:center;justify-content:space-between}
+.ch-info{display:flex;align-items:center;gap:8px}
+.ch-av{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:14px}
+.ch-name{font-size:0.85rem;font-weight:700;color:var(--white)}
+.ch-st{font-size:0.7rem;color:rgba(255,255,255,0.8)}
+.ch-close{background:none;border:none;color:rgba(255,255,255,0.7);cursor:pointer;font-size:1rem;line-height:1}
+.cmsgs{padding:0.9rem;display:flex;flex-direction:column;gap:0.7rem;max-height:260px;overflow-y:auto;background:var(--bg)}
+.cm{max-width:88%;padding:0.55rem 0.85rem;border-radius:10px;font-size:0.83rem;line-height:1.55;font-family:'Plus Jakarta Sans',sans-serif}
+.cm.bot{background:var(--white);border:1px solid var(--border2);color:var(--text);align-self:flex-start;border-bottom-left-radius:2px}
+.cm.usr{background:var(--sky);color:var(--white);align-self:flex-end;border-bottom-right-radius:2px}
+.cm.typ{color:var(--muted);font-style:italic;background:var(--white);border:1px solid var(--border2);align-self:flex-start}
+.cqr{padding:0.5rem 0.9rem;display:flex;flex-wrap:wrap;gap:0.35rem;background:var(--bg)}
+.cq{background:var(--white);border:1px solid var(--border);color:var(--sky-dark);font-size:0.72rem;font-weight:600;padding:0.25rem 0.65rem;border-radius:100px;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.cq:hover{background:var(--sky-soft);border-color:var(--sky)}
+.cinp-row{padding:0.7rem 0.9rem;border-top:1px solid var(--border2);display:flex;gap:0.5rem;background:var(--white)}
+.cinp{flex:1;background:var(--bg);border:1.5px solid var(--border2);border-radius:8px;padding:0.45rem 0.75rem;color:var(--text);font-size:0.83rem;outline:none;font-family:'Plus Jakarta Sans',sans-serif;transition:border-color 0.2s}
+.cinp:focus{border-color:var(--sky)}
+.csnd{background:var(--sky);border:none;border-radius:8px;padding:0.45rem 0.9rem;color:var(--white);font-weight:700;cursor:pointer;font-size:0.83rem;transition:background 0.2s}
+.csnd:hover{background:var(--sky-dark)}
+#ctgl{width:52px;height:52px;background:var(--sky);border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;box-shadow:0 4px 18px rgba(14,165,233,0.35);transition:all 0.2s;position:relative}
+#ctgl:hover{background:var(--sky-dark);transform:scale(1.06)}
+.cnotif{position:absolute;top:-1px;right:-1px;width:11px;height:11px;background:var(--green);border-radius:50%;border:2px solid var(--white)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Dev<span>FX</span> Institute</div>
+  <ul class="nav-links">
+    <li><a href="#">Courses</a></li>
+    <li><a href="#">Features</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <button class="nav-cta">Enroll Now</button>
+</nav>
+
+<div class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="live-dot"></span> Enrollments Open — 2025</div>
+    <h1>Learn Forex Trading<br/>the <em>Right Way</em></h1>
+    <p class="hero-sub">DevFX Institute is a structured online learning platform for aspiring Forex traders — from absolute beginners to advanced practitioners. Learn at your own pace.</p>
+    <div class="hero-btns">
+      <button class="btn-primary">Start Learning Free</button>
+      <button class="btn-ghost">Explore Courses →</button>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item"><div class="trust-check">✓</div> No prior knowledge needed</div>
+      <div class="trust-item"><div class="trust-check">✓</div> Self-paced learning</div>
+      <div class="trust-item"><div class="trust-check">✓</div> AI-powered assistance</div>
+    </div>
+  </div>
+</div>
+
+<div class="ticker">
+  <div class="ticker-inner" id="ticker"></div>
+</div>
+
+<div class="stats-row">
+  <div class="stat"><div class="stat-n">5,000+</div><div class="stat-l">Students enrolled</div></div>
+  <div class="stat"><div class="stat-n">98%</div><div class="stat-l">Satisfaction rate</div></div>
+  <div class="stat"><div class="stat-n">40+</div><div class="stat-l">Hours of content</div></div>
+  <div class="stat"><div class="stat-n">12</div><div class="stat-l">Expert modules</div></div>
+</div>
+
+<section style="background:var(--white)">
+  <div class="sec-tag">Curriculum</div>
+  <div class="sec-title">Courses for Every Level</div>
+  <div class="sec-sub">Structured learning paths that take you from zero to confident Forex trader.</div>
+  <div class="courses-grid">
+    <div class="course-card">
+      <span class="clevel lbeg">Beginner</span>
+      <div class="ctitle">Forex Fundamentals</div>
+      <div class="cdesc">Currency pairs, pips, spreads, lots, and how the global FX market operates.</div>
+      <div class="cmeta"><span>📖 8 modules</span><span>⏱ 6 hours</span></div>
+    </div>
+    <div class="course-card">
+      <span class="clevel lint">Intermediate</span>
+      <div class="ctitle">Technical Analysis Mastery</div>
+      <div class="cdesc">Candlesticks, support & resistance, trend lines, RSI, MACD and more.</div>
+      <div class="cmeta"><span>📖 10 modules</span><span>⏱ 10 hours</span></div>
+    </div>
+    <div class="course-card">
+      <span class="clevel ladv">Advanced</span>
+      <div class="ctitle">Risk & Trading Psychology</div>
+      <div class="cdesc">Position sizing, drawdown control, and the mental discipline of pro traders.</div>
+      <div class="cmeta"><span>📖 6 modules</span><span>⏱ 8 hours</span></div>
+    </div>
+    <div class="course-card">
+      <span class="clevel lint">Intermediate</span>
+      <div class="ctitle">Live Market Strategy</div>
+      <div class="cdesc">Apply strategies with guided real-market walkthroughs and case studies.</div>
+      <div class="cmeta"><span>📖 8 modules</span><span>⏱ 12 hours</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt-bg">
+  <div class="sec-tag">Why DevFX</div>
+  <div class="sec-title">Everything You Need to Succeed</div>
+  <div class="sec-sub">Built from the ground up for serious Forex learners — not just passive viewers.</div>
+  <div class="features-grid">
+    <div class="feat"><div class="ficon">🤖</div><div class="ftitle">AI Learning Assistant</div><div class="fdesc">Instant answers to your Forex questions, 24/7, powered by AI.</div></div>
+    <div class="feat"><div class="ficon">📊</div><div class="ftitle">Live Market Analysis</div><div class="fdesc">Real-time charts with AI-explained daily market commentary.</div></div>
+    <div class="feat"><div class="ficon">🧠</div><div class="ftitle">Adaptive Quizzes</div><div class="fdesc">Smart assessments that target your specific weak areas.</div></div>
+    <div class="feat"><div class="ficon">🎓</div><div class="ftitle">Verified Certificate</div><div class="fdesc">A digital certificate of completion to share with employers.</div></div>
+    <div class="feat"><div class="ficon">💬</div><div class="ftitle">Community Forum</div><div class="fdesc">Connect and grow with a community of active traders.</div></div>
+    <div class="feat"><div class="ficon">📱</div><div class="ftitle">Learn Anywhere</div><div class="fdesc">Fully responsive — phone, tablet, or desktop, anytime.</div></div>
+  </div>
+</section>
+
+<section style="background:var(--white)">
+  <div class="sec-tag">Pricing</div>
+  <div class="sec-title">Simple, Transparent Pricing</div>
+  <div class="sec-sub">No hidden fees. Start free, upgrade when you're ready.</div>
+  <div class="pricing-grid">
+    <div class="pcard">
+      <div class="pname">Free</div>
+      <div class="pamount">₹0 <span>/ forever</span></div>
+      <div class="pdesc">Great for exploring the basics before committing.</div>
+      <ul class="plist">
+        <li><span class="chk">✓</span> Beginner course access</li>
+        <li><span class="chk">✓</span> 5 AI queries per day</li>
+        <li><span class="chk">✓</span> Community forum</li>
+      </ul>
+      <button class="btn-ghost" style="width:100%;padding:0.65rem 1rem;font-size:0.88rem">Get Started Free</button>
+    </div>
+    <div class="pcard featured">
+      <div class="pbadge">Most Popular</div>
+      <div class="pname">Pro</div>
+      <div class="pamount">₹999 <span>/ month</span></div>
+      <div class="pdesc">For serious learners who want the full experience.</div>
+      <ul class="plist">
+        <li><span class="chk">✓</span> All courses unlocked</li>
+        <li><span class="chk">✓</span> Unlimited AI assistant</li>
+        <li><span class="chk">✓</span> Live market analysis</li>
+        <li><span class="chk">✓</span> Verified certificate</li>
+        <li><span class="chk">✓</span> Priority support</li>
+      </ul>
+      <button class="btn-primary" style="width:100%;padding:0.65rem 1rem;font-size:0.88rem">Enroll in Pro</button>
+    </div>
+    <div class="pcard">
+      <div class="pname">Lifetime</div>
+      <div class="pamount">₹7,999 <span>/ one-time</span></div>
+      <div class="pdesc">Pay once, learn forever. Best long-term value.</div>
+      <ul class="plist">
+        <li><span class="chk">✓</span> Everything in Pro</li>
+        <li><span class="chk">✓</span> Lifetime updates</li>
+        <li><span class="chk">✓</span> 1-on-1 mentoring session</li>
+      </ul>
+      <button class="btn-ghost" style="width:100%;padding:0.65rem 1rem;font-size:0.88rem">Get Lifetime Access</button>
+    </div>
+  </div>
+</section>
+
+<section class="alt-bg">
+  <div class="sec-tag">Testimonials</div>
+  <div class="sec-title">What Our Students Say</div>
+  <div class="testi-grid">
+    <div class="testi">
+      <div class="tstars">★★★★★</div>
+      <div class="ttext">"DevFX completely changed how I understand the market. The structured approach and AI assistant made everything click so much faster."</div>
+      <div class="tauthor"><div class="tavatar">AR</div><div><div class="tname">Arjun Raj</div><div class="trole">Retail Trader, Kerala</div></div></div>
+    </div>
+    <div class="testi">
+      <div class="tstars">★★★★★</div>
+      <div class="ttext">"I tried many YouTube channels before this. Nothing compares to the depth and structure here. Worth every rupee spent."</div>
+      <div class="tauthor"><div class="tavatar">PM</div><div><div class="tname">Priya Menon</div><div class="trole">Finance Student, Chennai</div></div></div>
+    </div>
+    <div class="testi">
+      <div class="tstars">★★★★★</div>
+      <div class="ttext">"The risk management module alone saved me from costly mistakes. Highly recommend to anyone serious about Forex trading."</div>
+      <div class="tauthor"><div class="tavatar">SK</div><div><div class="tname">Siddharth K.</div><div class="trole">Part-time Trader, Bangalore</div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-sec">
+  <h2>Ready to Start Your Trading Journey?</h2>
+  <p>Join thousands of students already learning Forex with DevFX Institute. Start completely free today.</p>
+  <button class="btn-primary" style="font-size:1rem;padding:0.9rem 2.5rem">Get Started — It's Free</button>
+</div>
+
+<footer>
+  <div class="logo" style="font-size:1.1rem">Dev<span>FX</span> Institute</div>
+  <div class="flinks">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Use</a>
+    <a href="#">Contact</a>
+    <a href="#">Disclaimer</a>
+  </div>
+  <div class="fcopy">© 2025 DevFX Institute. All rights reserved.</div>
+</footer>
+
+<div id="cw">
+  <div id="cbox">
+    <div class="ch">
+      <div class="ch-info">
+        <div class="ch-av">🤖</div>
+        <div><div class="ch-name">DevFX AI Assistant</div><div class="ch-st">● Online now</div></div>
+      </div>
+      <button class="ch-close" id="cclose">✕</button>
+    </div>
+    <div class="cmsgs" id="cmsgs">
+      <div class="cm bot">Hi! 👋 I'm the DevFX AI assistant. Ask me about courses, pricing, or anything Forex!</div>
+    </div>
+    <div class="cqr" id="cqr">
+      <span class="cq" onclick="ask('What courses are available?')">Courses?</span>
+      <span class="cq" onclick="ask('How much does it cost?')">Pricing?</span>
+      <span class="cq" onclick="ask('Is this good for beginners?')">For beginners?</span>
+    </div>
+    <div class="cinp-row">
+      <input class="cinp" id="cinp" placeholder="Ask a question..."/>
+      <button class="csnd" id="csnd">Send</button>
+    </div>
+  </div>
+  <button id="ctgl" title="Chat with DevFX AI">
+    💬
+    <span class="cnotif" id="cnotif"></span>
+  </button>
+</div>
+
+<script>
+const pairs=[
+  {p:'EUR/USD',v:'1.0842',c:'+0.12%',u:true},{p:'GBP/USD',v:'1.2734',c:'-0.08%',u:false},
+  {p:'USD/JPY',v:'149.32',c:'+0.21%',u:true},{p:'AUD/USD',v:'0.6521',c:'+0.05%',u:true},
+  {p:'USD/CAD',v:'1.3687',c:'-0.03%',u:false},{p:'NZD/USD',v:'0.5980',c:'+0.09%',u:true},
+  {p:'USD/CHF',v:'0.8923',c:'-0.11%',u:false},{p:'EUR/GBP',v:'0.8512',c:'+0.04%',u:true},
+];
+const tk=document.getElementById('ticker');
+[...pairs,...pairs].forEach(({p,v,c,u})=>{
+  const d=document.createElement('div');
+  d.className='tick';
+  d.innerHTML=`<span class="tick-pair">${p}</span><span class="tick-val">${v}</span><span class="${u?'tick-up':'tick-dn'}">${u?'▲':'▼'} ${c}</span>`;
+  tk.appendChild(d);
+});
+
+const toggle=document.getElementById('ctgl'),box=document.getElementById('cbox'),
+  cl=document.getElementById('cclose'),inp=document.getElementById('cinp'),
+  snd=document.getElementById('csnd'),msgs=document.getElementById('cmsgs'),
+  qr=document.getElementById('cqr'),notif=document.getElementById('cnotif');
+
+toggle.onclick=()=>{box.classList.toggle('open');notif.style.display='none'};
+cl.onclick=()=>box.classList.remove('open');
+
+const replies={
+  course:"We offer 4 courses:\n• Forex Fundamentals (Beginner)\n• Technical Analysis Mastery (Intermediate)\n• Risk & Trading Psychology (Advanced)\n• Live Market Strategy (Intermediate)\nAll are self-paced and fully online!",
+  price:"Our plans:\n• Free — ₹0 forever\n• Pro — ₹999/month (most popular)\n• Lifetime — ₹7,999 one-time\nStart free and upgrade anytime!",
+  begin:"Absolutely! Our Forex Fundamentals course starts from zero. No prior knowledge needed at all.",
+  cert:"Yes! Completing any paid course earns you a verified digital certificate you can share on LinkedIn.",
+  def:"Great question! Feel free to enroll for free and explore the platform. Our team will also get back to you shortly."
+};
+
+function getReply(m){
+  const l=m.toLowerCase();
+  if(l.includes('course')||l.includes('curriculum')||l.includes('learn'))return replies.course;
+  if(l.includes('cost')||l.includes('price')||l.includes('fee')||l.includes('pricing')||l.includes('₹')||l.includes('pay'))return replies.price;
+  if(l.includes('begin')||l.includes('new')||l.includes('start')||l.includes('zero')||l.includes('noob'))return replies.begin;
+  if(l.includes('certif'))return replies.cert;
+  return replies.def;
+}
+
+function addMsg(t,type){
+  const d=document.createElement('div');
+  d.className=`cm ${type}`;
+  d.textContent=t;
+  msgs.appendChild(d);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+function ask(q){
+  addMsg(q,'usr');
+  qr.style.display='none';
+  const typ=document.createElement('div');
+  typ.className='cm typ';typ.textContent='Typing...';
+  msgs.appendChild(typ);msgs.scrollTop=msgs.scrollHeight;
+  setTimeout(()=>{msgs.removeChild(typ);addMsg(getReply(q),'bot');},950);
+}
+
+snd.onclick=()=>{const v=inp.value.trim();if(!v)return;inp.value='';ask(v);};
+inp.onkeydown=e=>{if(e.key==='Enter')snd.onclick()};
+</script>
+</body>
+</html>
